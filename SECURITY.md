@@ -27,10 +27,13 @@ Before downloading, verify you are on one of the official sites listed above.
 After downloading, you can verify the integrity of the release:
 
 ```bash
-# On Windows PowerShell
+# Quick verification using our tool (recommended)
+python3 scripts/verify-download.py DWMBlurGlass.exe
+
+# Manual hash check - Windows PowerShell
 Get-FileHash DWMBlurGlass.exe -Algorithm SHA256
 
-# On Linux/macOS
+# Manual hash check - Linux/macOS
 sha256sum DWMBlurGlass.exe
 ```
 

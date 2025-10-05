@@ -2,6 +2,19 @@
 
 This directory contains security tools for DWMBlurGlass to help detect malicious code and verify the integrity of the codebase.
 
+## Tools
+
+### 1. Security Scanner (`security-scan.py`)
+Scans source code for malicious patterns.
+
+### 2. Download Verifier (`verify-download.py`)
+Verifies downloaded executables for authenticity.
+
+### 3. Pre-commit Hook (`pre-commit-hook.sh`)
+Git hook that runs security scan before each commit.
+
+---
+
 ## Security Scanner (`security-scan.py`)
 
 A Python script that scans the DWMBlurGlass source code for potentially malicious patterns.
@@ -123,16 +136,15 @@ self.malicious_patterns = {
 
 ### Pre-commit Hook
 
-Add to `.git/hooks/pre-commit`:
+To automatically run security scans before each commit:
 
 ```bash
-#!/bin/bash
-python3 scripts/security-scan.py
-if [ $? -ne 0 ]; then
-    echo "Security scan failed. Commit aborted."
-    exit 1
-fi
+# Install the pre-commit hook
+cp scripts/pre-commit-hook.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
 ```
+
+The hook will run `security-scan.py` and prevent commits if issues are detected.
 
 ### Pre-release Check
 
@@ -161,6 +173,64 @@ To improve the security scanner:
 ## License
 
 This security scanner is part of DWMBlurGlass and follows the same LGPL v3 license.
+
+## Download Verifier (`verify-download.py`)
+
+A tool to help users verify downloaded DWMBlurGlass executables.
+
+### Usage
+
+```bash
+# Verify a downloaded executable
+python3 verify-download.py DWMBlurGlass.exe
+
+# Or with full path
+python3 verify-download.py C:\Downloads\DWMBlurGlass.exe
+```
+
+### What It Checks
+
+1. **File Size** - Verifies reasonable file size (under 50MB)
+2. **SHA-256 Hash** - Calculates hash for comparison with official releases
+3. **Digital Signature** - Checks code signing (Windows only)
+
+### Output
+
+The tool provides:
+- File hash to compare with official releases
+- Digital signature status
+- File size validation
+- Warnings and recommendations
+
+### Example Usage
+
+```bash
+$ python3 verify-download.py DWMBlurGlass.exe
+
+================================================================================
+DWMBlurGlass Download Verification Tool
+================================================================================
+
+📁 Verifying: DWMBlurGlass.exe
+--------------------------------------------------------------------------------
+ℹ️  File size: 2.45 MB
+
+🔐 Calculating SHA-256 hash...
+   Hash: abc123...
+
+   Compare this hash with:
+   1. Official GitHub release notes
+   2. Hash posted by official maintainers
+   3. Hash from a trusted source
+
+🔏 Checking digital signature...
+✅ Digital signature: Valid
+
+⚠️  IMPORTANT REMINDERS:
+   • Only download from official sources
+   • Never download from file sharing sites
+   • If in doubt, build from source code
+```
 
 ## Support
 
