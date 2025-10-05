@@ -18,6 +18,8 @@ This project uses [LGNU V3 license](/COPYING.LESSER).
 > We only distribute software on [Github](https://github.com/Maplespe/DWMBlurGlass/releases), [Bilibili](https://space.bilibili.com/87195798) and [winmoes](https://winmoes.com).
 > 
 > As well, any new versions for testing are pushed to the test branch first, rather than releasing binaries in advance.
+>
+> **📖 Read our [Security Policy](SECURITY.md) for how to verify authenticity and report malicious copies.**
 
 [![license](https://img.shields.io/github/license/Maplespe/DWMBlurGlass.svg)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 [![Github All Releases](https://img.shields.io/github/downloads/Maplespe/DWMBlurGlass/total.svg)](https://github.com/Maplespe/DWMBlurGlass/releases)
@@ -39,6 +41,7 @@ This project uses [LGNU V3 license](/COPYING.LESSER).
   - [Install](#install)
   - [Uninstall](#uninstall)
 - [Language files](#language-files)
+- [Security](#security)
 - [Dependencies](#dependencies)
 
 ## Effects
@@ -165,6 +168,21 @@ If you would like to help us translate into other languages, please see below fo
 9. Finally, commit the file to your own forked repository and send a pull request to the main branch of the project.
 10. After the request is approved, your file will be released with a future software update.
    
+
+## Security
+**⚠️ Important**: Malicious copies of DWMBlurGlass are being distributed. See our [Security Policy](SECURITY.md) to:
+- Verify you have the legitimate version
+- Learn how to detect malicious copies
+- Run security scans on the source code
+- Report suspicious distributions
+
+For developers and security researchers:
+```bash
+# Run the security scanner
+python3 scripts/security-scan.py
+```
+
+See [scripts/README.md](scripts/README.md) for details on security tools.
 
 ## Dependencies
 * [MiaoUI Lite interface library v2](https://github.com/Maplespe/MiaoUILite)
